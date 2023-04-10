@@ -32,9 +32,9 @@ if len(sys.argv) > 1:
 
         if sys.argv[x] == 'Teacher:':
             if sys.argv[x+1][-1] == '~':
-                homeroom_teacher = sys.argv[x+1] + ' ' + sys.argv[x+2][0:-1]
+                homeroom_teacher = f"{sys.argv[x+1]} {sys.argv[x+2][0:-1]}"
             else:
-                homeroom_teacher = sys.argv[x+1] + ' ' + sys.argv[x+2]
+                homeroom_teacher = f"{sys.argv[x+1]} {sys.argv[x+2]}"
             break
 
 asset_id = input('Enter Asset ID: ')
