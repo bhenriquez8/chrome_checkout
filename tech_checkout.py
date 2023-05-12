@@ -55,18 +55,18 @@ pdf.output("filled_form.pdf")
 
 # Where we merge both PDFs together with PyPDF2
 checkout_form = open('Tech Checkout.pdf', 'rb')
-pdfReader = PyPDF2.PdfFileReader(checkout_form)
-checkout_form_first_page = pdfReader.getPage(0)
+pdfReader = PyPDF2.PdfReader(checkout_form)
+checkout_form_first_page = pdfReader.pages[0]
 
 created_pdf = open('filled_form.pdf', 'rb')
-pdfStudentInfoReader = PyPDF2.PdfFileReader(created_pdf)
-checkout_form_first_page.mergePage(pdfStudentInfoReader.getPage(0))
+pdfStudentInfoReader = PyPDF2.PdfReader(created_pdf)
+checkout_form_first_page.merge_page(pdfStudentInfoReader.pages[0])
 
-pdfWriter = PyPDF2.PdfFileWriter()
-pdfWriter.addPage(checkout_form_first_page)
+pdfWriter = PyPDF2.PdfWriter()
+pdfWriter.add_page(checkout_form_first_page)
 
-filleCheckoutForm = open('tech_filled_form.pdf', 'wb')
-pdfWriter.write(filleCheckoutForm)
+filledCheckoutForm = open('tech_filled_form.pdf', 'wb')
+pdfWriter.write(filledCheckoutForm)
 
 # Write data to Excel
 data = [student_no, student_name, 'FA', homeroom_teacher, grade, asset_id]
@@ -74,6 +74,6 @@ write_to_excel('student_info.xlsx', 'Student Info', data)
 
 # Clean up
 checkout_form.close()
-filleCheckoutForm.close()
+filledCheckoutForm.close()
 created_pdf.close()
 os.remove(os.path.abspath('filled_form.pdf'))
